@@ -6,14 +6,14 @@ def LS_omegas(t, samples_per_peak=1):
     dt_min = np.min(np.diff(t))
     omega_max = np.pi / dt_min
     # Nomegas_nyq = int(t.max() / (2 * dt_min))
-    Nomegas_nyq = len(t) #not sure if this works for irregular timesteps.
+    Nomegas_nyq = len(t) 
     ls_omegas = np.linspace(1e-5, omega_max, samples_per_peak * Nomegas_nyq)
     return ls_omegas
 
 class LombScargleBatchMask(torch.nn.Module):
     def __init__(self, omegas):
         super(LombScargleBatchMask, self).__init__()
-        self.omegas = omegas  # Tensor of angular frequencies (ω)
+        self.omegas = omegas  # Tensor of angular frequencies
 
     def compute_fap_weights(self, ps, eps=1e-5):
         M = ps.shape[-1]  # Number of independent frequencies
